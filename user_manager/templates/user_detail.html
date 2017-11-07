@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section style="margin-top: 70px">
+        <table>
+            <tr>
+                <td>이름</td>
+                <td>{{ user_info.user_nm }}</td>
+            </tr>
+            <tr>
+                <td>계정</td>
+                <td>{{ user_info.user_id }}</td>
+            </tr>
+            <tr>
+                <td>직책</td>
+                <td>{{ user_info.position }}</td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td>{{ user_info.email }}</td>
+            </tr>
+            <tr>
+                <td>입사일</td>
+                <td>{{ user_info.join_day }}</td>
+            </tr>
+        </table>
+    </section>
+{% endblock %}
