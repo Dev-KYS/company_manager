@@ -5,41 +5,43 @@
                 {% csrf_token %}
                 <div class="col-md-6 col-md-push-3">
                     <div class="form-group">
-					    <input type="text" name="user_id" required class="form-control" placeholder="아이디" />
+                        {{ signupform.username.label_tag }}
+                        {{ signupform.username }}
 				    </div>
 
                     <div class="form-group">
-                        <input type="text" name="user_nm" required class="form-control" placeholder="이름" />
+                        {{ signupform.name.label_tag }}
+                        {{ signupform.name }}
                     </div>
 
                     <div class="form-group">
-                        <input type="date" name="birth" required class="form-control" placeholder="생일" />
+                        {{ signupform.birth.label_tag }}
+                        {{ signupform.birth }}
                     </div>
 
                     <div class="form-group">
-                        <input type="email" name="email" required class="form-control" placeholder="이메일" />
+                        {{ signupform.email.label_tag }}
+                        {{ signupform.email }}
                     </div>
 
                     <div class="form-group">
                         <select name="team" required class="form-control">
                             <option value="">팀</option>
-                            {% for item in team %}
-                                <option value="{{ item.cd }}">{{ item.cd_nm }}</option>
-                            {% endfor %}
+{#                            {% for item in team %}#}
+{#                                <option value="{{ item.cd }}">{{ item.cd_nm }}</option>#}
+{#                            {% endfor %}#}
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <select name="position" required class="form-control">
-                            <option value="">직급</option>
-                            {% for item in position %}
-                                <option value="{{ item.cd }}">{{ item.cd_nm }}</option>
-                            {% endfor %}
-                        </select>
+                        {{ signupform.position.label_tag }}
+                        {{ signupform.position }}
+
                     </div>
 
                     <div class="form-group">
-                        <input type="date" name="join_day" required class="form-control" placeholder="입사일" />
+                        {{ signupform.date_joined.label_tag }}
+                        {{ signupform.date_joined }}
                     </div>
 
                     <button type="submit" name="go" class="btn btn-primary btn-block">생성</button>
