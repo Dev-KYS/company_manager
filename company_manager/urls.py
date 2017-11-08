@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^accounts/signup$', user_views.CreateUserView, name='signup'),
     url(r'^user_manager/', include('user_manager.urls')),
 
+
 ]

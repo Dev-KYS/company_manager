@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="margin-top: 70px">
+    <h3>연차 신청</h3>
+        <div class="row">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                <select name="type_cd" class="form-control">
+                    <option value="">신청분류</option>
+                    {% for list in type_code %}
+                        <option value="{{ list.cd }}">{{ list.cd_nm }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="sta_dt">시작일</label>
+                <input type="date" id="sta_dt" name="sta_dt">
+            </div>
+            <div class="form-group">
+                <label for="end_dt">종료일</label>
+                <input type="date" id="end_dt" name="end_dt">
+            </div>
+            <div class="form-group">
+                <label for="reason">신청사유</label>
+                <textarea class="form-control" id="reason" name="reason"></textarea>
+            </div>
+                <button class="btn btn-default" type="submit">신청</button>
+                <button class="btn btn-danger" type="button">취소</button>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

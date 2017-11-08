@@ -11,12 +11,16 @@
                 <td>{{ user_info.user_id }}</td>
             </tr>
             <tr>
-                <td>소속</td>
-                <td>{{ user_info.team.cd_nm }}</td>
+                <td>비밀번호</td>
+                <td><input type="password" name="user_pw" id="user_pw"></td>
+            </tr>
+            <tr>
+                <td>비밀번호 확인</td>
+                <td><input type="password" name="user_pw" id="user_pw"></td>
             </tr>
             <tr>
                 <td>직책</td>
-                <td>{{ user_info.position.cd_nm }}</td>
+                <td>{{ user_info.position }}</td>
             </tr>
             <tr>
                 <td>이메일</td>
@@ -27,6 +31,5 @@
                 <td>{{ user_info.join_day }}</td>
             </tr>
         </table>
-    <button class="btn btn-default" onclick="location.href='{% url 'user_manager:user_modify' %}'">회원정보 수정</button>
     </section>
 {% endblock %}

@@ -3,30 +3,47 @@
 		<section style="margin-top: 70px">
 			<form method="post" action="{% url 'signup' %}" role="login">
                 {% csrf_token %}
-                <div class="col-xs-6 col-xs-offset-3">
+                <div class="col-md-6 col-md-push-3">
                     <div class="form-group">
-                    {{ form.user_id }}
-				</div>
+					    <input type="text" name="user_id" required class="form-control" placeholder="아이디" />
+				    </div>
 
-                <div class="form-group">
-					{{ form.user_nm }}
-				</div>
+                    <div class="form-group">
+                        <input type="text" name="user_nm" required class="form-control" placeholder="이름" />
+                    </div>
 
+                    <div class="form-group">
+                        <input type="date" name="birth" required class="form-control" placeholder="생일" />
+                    </div>
 
-				<div class="form-group">
-					{{ form.email }}
-				</div>
+                    <div class="form-group">
+                        <input type="email" name="email" required class="form-control" placeholder="이메일" />
+                    </div>
 
-                <div class="form-group">
-					{{ form.position }}
-				</div>
+                    <div class="form-group">
+                        <select name="team" required class="form-control">
+                            <option value="">팀</option>
+                            {% for item in team %}
+                                <option value="{{ item.cd }}">{{ item.cd_nm }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-				<div class="form-group">
-					{{ form.join_day }}
-				</div>
+                    <div class="form-group">
+                        <select name="position" required class="form-control">
+                            <option value="">직급</option>
+                            {% for item in position %}
+                                <option value="{{ item.cd }}">{{ item.cd_nm }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-				<button type="submit" name="go" class="btn btn-primary btn-block">생성</button>
-				<button type="button" name="go" class="btn btn-danger btn-block" onclick="location.href='/user_manager/list'">취소</button>
+                    <div class="form-group">
+                        <input type="date" name="join_day" required class="form-control" placeholder="입사일" />
+                    </div>
+
+                    <button type="submit" name="go" class="btn btn-primary btn-block">생성</button>
+                    <button type="button" name="go" class="btn btn-danger btn-block" onclick="location.href='/user_manager/list'">취소</button>
                 </div>
 			</form>
 		</section>

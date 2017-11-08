@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'vacation_manager.apps.VacationManagerConfig',
     'user_manager.apps.UserManagerConfig',
+    'code_manager.apps.CodeManagerConfig',
+    'team_manager.apps.TeamManagerConfig',
 ]
 
 MIDDLEWARE = [
