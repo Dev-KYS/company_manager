@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    # url(r'^signup/', views.signup, name='join'),
-    # url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^lists/', views.userlist, name='userlist'),
+    url(r'^detail/', views.userdetail, name='userdetail'),
 ]

@@ -4,34 +4,34 @@
     <h3>직원 리스트</h3>
         <table class="table">
             <thead>
-                <th>번호</th>
                 <th>이름</th>
                 <th>계정</th>
                 <th>직책</th>
+                <th>소속</th>
                 <th>입사일</th>
             </thead>
             <tbody>
-            {% for list in user_list %}
-                <tr onclick="detail_form('{{ list.user_id }}')">
-                    <td>{{ list.id }}</td>
-                    <td>{{ list.user_nm }}</td>
-                    <td>{{ list.user_id }}</td>
-                    <td>{{ list.position.cd_nm }}</td>
-                    <td>{{ list.join_day }}</td>
+            {% for list in userlist %}
+                <tr onclick="detail_form('{{ list.uid }}')">
+                    <td>{{ list.name }}</td>
+                    <td>{{ list.username }}</td>
+                    <td>{{ list.get_position_display }}</td>
+                    <td>{{ list.team.name }}</td>
+                    <td>{{ list.date_joined }}</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
 
-    <form id="detail_form" action="{% url 'user_manager:user_detail' %}" method="post">
+    <form id="detail_form" action="{% url 'userdetail' %}" method="post">
     {% csrf_token %}
-        <input type="hidden" id="user_id" name="user_id">
+        <input type="hidden" id="uid" name="uid">
     </form>
 
     <script>
     function detail_form(user_id) {
-        $('#user_id').val(user_id);
+        $('#uid').val(user_id);
         $('#detail_form').submit();
     }
     </script>
