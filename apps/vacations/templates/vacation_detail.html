@@ -26,5 +26,36 @@
             <h4>{{ info.reason }}</h4>
         </div>
 
+        <div class="form-group">
+            <button name="agree" id="agree" class="btn btn-default">승인</button>
+            <button name="denied" id="denied" class="btn btn-danger">반려</button>
+        </div>
     </section>
+
+    <script>
+    function agree() {
+        $.ajax({
+            url: "",
+            type : "POST",
+            data : "",
+            dataType : "json",
+            success : function (data) {
+
+            }
+        })
+    }
+
+    function denied() {
+        $.ajax({
+            url: "",
+            type : "POST",
+            data : "",
+            dataType : "json",
+            success : function (data) {
+
+            }
+        })
+    }
+
+    </script>
 {% endblock %}

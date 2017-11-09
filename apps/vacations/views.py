@@ -36,3 +36,11 @@ def vacation_create(request):
 def vacation_detail(request):
     object = Vacation.objects.select_related().get(user_id=request.POST['user_uid'])
     return render(request, "vacation_detail.html", {'info': object})
+
+
+def agree(request):
+    return
+
+
+def denied(request):
+    return

@@ -8,4 +8,6 @@ urlpatterns = [
     url(r'^teamlist/', views.vacation_teamlist, name='vacation_teamlist'),
     url(r'^create/', views.vacation_create, name='vacation_create'),
     url(r'^detail/', views.vacation_detail, name='vacation_detail'),
+    url(r'^agree/', views.agree, name='vacation_agree'),
+    url(r'^denied/', views.denied, name='vacation_denied')
 ]
