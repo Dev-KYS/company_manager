@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import MyUser
+from apps.teams.models import Team
 
 
 class SignupFrom(UserCreationForm):
@@ -22,6 +23,30 @@ class SignupFrom(UserCreationForm):
                 'class':'form-control',
                 'placeholder': '아이디',
                 'required' : 'True',
+            }
+        )
+    )
+
+    password1 = forms.CharField(
+        required=True,
+        label="패스워드",
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': '패스워드',
+                'required' : 'True'
+            }
+        )
+    )
+
+    password2 = forms.CharField(
+        required=True,
+        label="패스워드 확인",
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': '패스워드 확인',
+                'required': 'True'
             }
         )
     )
@@ -49,6 +74,17 @@ class SignupFrom(UserCreationForm):
             }
         )
     )
+    team = forms.ModelChoiceField(
+        required=True,
+        label="소속",
+        queryset=Team.objects.all(),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+            }
+        )
+    )
+
     position = forms.ChoiceField(
         required=False,
         label="직급",
@@ -81,9 +117,9 @@ class SignupFrom(UserCreationForm):
         )
     )
 
-    class Meata:
+    class Meta:
         model = MyUser
-        fields = ("username", "name", "email", "birth", "date_joined")
+        fields = ("username", "name", "password1", "password2", "team", "position", "email", "birth", "date_joined")
 
 
 class LoginForm(AuthenticationForm):

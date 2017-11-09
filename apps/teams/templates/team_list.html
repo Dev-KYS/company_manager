@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="margin-top: 70px">
+    <h3>팀 리스트</h3>
+        <table class="table">
+            <thead>
+                <th>팀명</th>
+                <th></th>
+                <th>직책</th>
+                <th>입사일</th>
+            </thead>
+            <tbody>
+            {% for list in userlist %}
+                <tr onclick="detail_form('{{ list.uid }}')">
+                    <td>{{ list.name }}</td>
+                    <td>{{ list.username }}</td>
+                    <td>{{ list.get_position_display }}</td>
+                    <td>{{ list.date_joined }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <form id="detail_form" action="" method="post">
+    {% csrf_token %}
+        <input type="hidden" id="uid" name="uid">
+    </form>
+
+    <script>
+    function detail_form(uid) {
+        $('#uid').val(uid);
+        $('#detail_form').submit();
+    }
+    </script>
+
+{% endblock %}

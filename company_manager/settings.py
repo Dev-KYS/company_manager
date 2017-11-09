@@ -52,18 +52,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'company_manager.wsgi.application'
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'vacation_manager',
-    #     'USER': 'root',
-    #     'PASSWORD': 'kim147258',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306'
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'company',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'vacation_manager',
+        'USER': 'root',
+        'PASSWORD': 'kim147258',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': 'company',
+    # }
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

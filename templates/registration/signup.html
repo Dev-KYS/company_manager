@@ -10,6 +10,17 @@
 				    </div>
 
                     <div class="form-group">
+                        {{ signupform.password1.label_tag }}
+                        {{ signupform.password1 }}
+				    </div>
+
+                    <div class="form-group">
+                        {{ signupform.password2.label_tag }}
+                        {{ signupform.password2 }}
+				    </div>
+
+
+                    <div class="form-group">
                         {{ signupform.name.label_tag }}
                         {{ signupform.name }}
                     </div>
@@ -25,12 +36,8 @@
                     </div>
 
                     <div class="form-group">
-                        <select name="team" required class="form-control">
-                            <option value="">팀</option>
-{#                            {% for item in team %}#}
-{#                                <option value="{{ item.cd }}">{{ item.cd_nm }}</option>#}
-{#                            {% endfor %}#}
-                        </select>
+                        {{ signupform.team.label_tag }}
+                        {{ signupform.team }}
                     </div>
 
                     <div class="form-group">

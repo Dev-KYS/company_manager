@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from apps.teams.models import Team
 import uuid
 
 class MyUserManager(BaseUserManager):
@@ -50,6 +51,12 @@ class MyUser(AbstractBaseUser):
     )
     email = models.EmailField(
         verbose_name='이메일'
+    )
+    team = models.ForeignKey(
+        Team,
+        verbose_name='소속',
+        null=True,
+        blank=True
     )
     position = models.CharField(
         max_length=2,
