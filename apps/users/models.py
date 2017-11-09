@@ -88,7 +88,7 @@ class MyUser(AbstractBaseUser):
         verbose_name='스태브 여부'
     )
     is_active = models.BooleanField(
-        default=False,
+        default=True,
         verbose_name='활성화 여부'
     )
 
@@ -101,7 +101,7 @@ class MyUser(AbstractBaseUser):
         db_table = 'users'
 
     def __str__(self):
-        return self.username
+        return self.name
 
     def get_full_name(self):
         return self.username

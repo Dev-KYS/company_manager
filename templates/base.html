@@ -35,10 +35,11 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">연차관리 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="">신청 목록</a></li>
+                <li><a href="{% url 'vacation_list' %}">신청 목록</a></li>
                 <li><a href="">잔여 연차관리</a></li>
-                <li><a href="">연차 신청</a></li>
-                <li><a href="">연차 신청 내역</a></li>
+                <li><a href="{% url 'vacation_create' %}">연차 신청</a></li>
+                <li><a href="{% url 'vacation_mylist' %}">연차 신청 내역</a></li>
+                <li><a href="{% url 'vacation_teamlist' %}">팀 연차 신청 내역</a></li>
               </ul>
             </li>
             <li class="dropdown">

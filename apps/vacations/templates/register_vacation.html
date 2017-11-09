@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+    <section style="margin-top: 70px">
+			<form method="post" action="{% url 'vacation_create' %}" role="login">
+                {% csrf_token %}
+                <div class="col-md-6 col-md-push-3">
+                    <div class="form-group">
+                        {{ vacationform.vacation_type.label_tag }}
+                        {{ vacationform.vacation_type }}
+				    </div>
 
-</body>
-</html>
+                    <div class="form-group">
+                        {{ vacationform.start.label_tag }}
+                        {{ vacationform.start}}
+				    </div>
+
+                    <div class="form-group">
+                        {{ vacationform.end.label_tag }}
+                        {{ vacationform.end }}
+				    </div>
+
+
+                    <div class="form-group">
+                        {{ vacationform.reason.label_tag }}
+                        {{ vacationform.reason }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ vacationform.first_approval_user.label_tag }}
+                        {{ vacationform.first_approval_user }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ vacationform.last_approval_user.label_tag }}
+                        {{ vacationform.last_approval_user }}
+                    </div>
+
+                    <button type="submit" name="go" class="btn btn-primary btn-block">생성</button>
+                    <button type="button" name="go" class="btn btn-danger btn-block" onclick="location.href='/user_manager/list'">취소</button>
+                </div>
+			</form>
+		</section>
+{% endblock %}

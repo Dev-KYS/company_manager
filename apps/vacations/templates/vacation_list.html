@@ -12,11 +12,11 @@
             </thead>
             <tbody>
             {% for list in vacation_list %}
-                <tr onclick="detail_form('{{ list.id }}')">
+                <tr onclick="detail_form('{{ list.id }}', '{{ list.user.uid }}')">
                     <td>{{ list.id }}</td>
-                    <td>{{ list.user.user_nm }}</td>
-                    <td>{{ list.type.cd_nm }}</td>
-                    <td>{{ list.created_at }}</td>
+                    <td>{{ list.user.name }}</td>
+                    <td>{{ list.get_vacation_type_display }}</td>
+                    <td>{{ list.created }}</td>
                     <td>
                         {% if list.first_approval == "" %}
                             신청
@@ -34,14 +34,16 @@
         </table>
     </div>
 
-    <form id="detail_form" action="{% url 'vacation_manager:vacation_detail' %}" method="post">
+    <form id="detail_form" action="{% url 'vacation_detail' %}" method="post">
     {% csrf_token %}
         <input type="hidden" id="v_id" name="v_id">
+        <input type="hidden" id="user_uid" name="user_uid">
     </form>
 
     <script>
-    function detail_form(v_id) {
+    function detail_form(v_id, user_uid) {
         $('#v_id').val(v_id);
+        $('#user_uid').val(user_uid);
         $('#detail_form').submit();
     }
     </script>

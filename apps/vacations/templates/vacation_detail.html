@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+    <section style="margin-top: 70px">
+        <div class="form-group">
+            <label>이름</label>
+            <h4>{{ info.user.name }}</h4>
+        </div>
 
-</body>
-</html>
+        <div class="form-group">
+            <label>신청구분</label>
+            <h4>{{ info.get_vacation_type_display }}</h4>
+        </div>
+
+        <div class="form-group">
+            <label>휴가 시작일</label>
+            <h4>{{ info.start }}</h4>
+        </div>
+
+        <div class="form-group">
+            <label>휴가 종료일</label>
+            <h4>{{ info.end }}</h4>
+        </div>
+
+        <div class="form-group">
+            <label>사유</label>
+            <h4>{{ info.reason }}</h4>
+        </div>
+
+    </section>
+{% endblock %}

@@ -16,13 +16,13 @@
 
        <section class="login-form">
 		<section>
-			<form method="post" action="/accounts/login_check" role="login">
+			<form method="post" action="{% url 'login' %}" role="login">
                 {% csrf_token %}
 <!--				<img src="logo.png" alt="" class="img-responsive" />-->
                 <h2>VIEWDOT SOFT 관리자 페이지</h2>
 			
 				<div class="form-group">
-					<input type="text" name="user_id" required class="form-control" placeholder="아이디" />
+					<input type="text" name="username" required class="form-control" placeholder="아이디" />
 					<span class="glyphicon glyphicon-user"></span>
 				</div>
 				
