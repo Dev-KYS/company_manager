@@ -7,8 +7,13 @@
 
         <!-- 합쳐지고 최소화된 최신 CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-        <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
-    <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+        <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -33,31 +38,33 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">연차관리 <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">직원 연차관리 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{% url 'vacation_list' %}">신청 목록</a></li>
-                <li><a href="">잔여 연차관리</a></li>
-                <li><a href="{% url 'vacation_create' %}">연차 신청</a></li>
-                <li><a href="{% url 'vacation_mylist' %}">연차 신청 내역</a></li>
-                <li><a href="{% url 'vacation_teamlist' %}">팀 연차 신청 내역</a></li>
+                  {% if request.user.is_staff == 1 %}
+                      <li><a href="{% url 'vacation_list' %}">전체 신청 목록</a></li>
+                  {% endif %}
+                 <li><a href="{% url 'vacation_teamlist' %}">연차 대기 내역</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">직원관리 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{% url 'userlist' %}">직원 리스트</a></li>
-                <li><a href="{% url 'signup' %}">신규직원 생성</a></li>
+                  {% if request.user.is_staff == 1 %}
+                      <li><a href="{% url 'signup' %}">신규직원 생성</a></li>
+                  {% endif %}
               </ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">마이메뉴 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                   <li><a href="">회원정보</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">로그아웃</a></li>
+                  <li><a href="{% url 'vacation_mylist' %}">연차 관리</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{% url 'logout' %}">로그아웃</a></li>
               </ul>
             </li>
           </ul>
@@ -66,8 +73,7 @@
      </nav>
        {% block content %}
        {% endblock %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
     </body>
 </html>

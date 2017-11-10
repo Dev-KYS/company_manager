@@ -58,11 +58,11 @@ class MyUser(AbstractBaseUser):
         null=True,
         blank=True
     )
-    position = models.CharField(
-        max_length=2,
-        choices=POSITION_TYPES,
-        default='g',
-        verbose_name='직급'
+    position = models.ForeignKey(
+        'UserCode',
+        verbose_name='직급',
+        null=True,
+        blank=True
     )
     birth = models.DateField(
         null=True,
@@ -78,6 +78,12 @@ class MyUser(AbstractBaseUser):
         null=True,
         blank=True,
         verbose_name='퇴사일'
+    )
+    v_day = models.IntegerField(
+        null=False,
+        blank=False,
+        verbose_name='잔여 연차일',
+        default=0
     )
     is_superuser = models.BooleanField(
         default=False,
@@ -114,3 +120,34 @@ class MyUser(AbstractBaseUser):
 
     def has_module_perms(self, module):
         return True
+
+
+class UserCode(models.Model):
+
+    code = models.CharField(
+        primary_key=True,
+        max_length=10,
+        verbose_name='직급 코드',
+        null=False,
+        blank=False
+    )
+
+    codename = models.CharField(
+        max_length=5,
+        verbose_name='직급명',
+        null=False,
+        blank=False
+    )
+
+    sort = models.IntegerField(
+        verbose_name='순서',
+        null=False,
+        blank=False,
+        unique=True
+    )
+
+    class Meta:
+        db_table = 'user_code'
+
+    def __str__(self):
+        return self.codename

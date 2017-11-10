@@ -8,7 +8,7 @@ from apps.users import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/login/', auth_views.login, name='login', kwargs={'template_name': 'registration/login.html'}),
-    url(r'^accounts/logout/$', auth_views.logout, {'next_page' : '/accounts/login'}),
+    url(r'^accounts/logout/$', auth_views.logout, {'next_page' : '/accounts/login'}, name='logout'),
     url(r'^accounts/signup$', views.signup, name='signup'),
     url(r'^users/', include('apps.users.urls')),
     url(r'^vacations/', include('apps.vacations.urls')),

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <section style="margin-top: 70px">
+        <input type="hidden" id="pk" value="{{ info.pk }}">
         <div class="form-group">
             <label>이름</label>
             <h4>{{ info.user.name }}</h4>
@@ -27,34 +28,50 @@
         </div>
 
         <div class="form-group">
-            <button name="agree" id="agree" class="btn btn-default">승인</button>
-            <button name="denied" id="denied" class="btn btn-danger">반려</button>
+            {% if info.first_approval == 'N' or info.last_approval == 'N' %}
+                <h4>반려된 신청입니다.</h4>
+            {% elif info.first_approval_user_id == request.user.uid and info.first_approval == 'Y' %}
+                <h4>1차 승인한 신청입니다.</h4>
+            {% else %}
+                <button name="agree" id="agree" class="btn btn-default" onclick="agree()">승인</button>
+                <button name="denied" id="denied" class="btn btn-danger" onclick="denied()">반려</button>
+            {% endif %}
         </div>
     </section>
 
     <script>
     function agree() {
-        $.ajax({
-            url: "",
-            type : "POST",
-            data : "",
-            dataType : "json",
-            success : function (data) {
+        if(confirm('승인하시겠습니까?') == true){
 
-            }
-        })
+            $.ajax({
+                url: "/vacations/agree/",
+                type : "POST",
+                data : {'v_id' : $('#pk').val(), 'csrfmiddlewaretoken':'{{ csrf_token }}' },
+                dataType : "json",
+                success : function (data) {
+                    if(data.result == 'SUCCESS'){
+                        alert('승인되었습니다');
+                    }
+                }
+            })
+        }
+
     }
 
     function denied() {
-        $.ajax({
-            url: "",
-            type : "POST",
-            data : "",
-            dataType : "json",
-            success : function (data) {
-
-            }
-        })
+        if(confirm('반려하시겠습니까?') == true){
+            $.ajax({
+                url: "/vacations/denied/",
+                type : "POST",
+                data : {'v_id' : $('#pk').val(), 'csrfmiddlewaretoken':'{{ csrf_token }}' },
+                dataType : "json",
+                success : function (data) {
+                    if(data.result == 'SUCCESS'){
+                        alert('반려되었습니다');
+                    }
+                }
+            })
+        }
     }
 
     </script>

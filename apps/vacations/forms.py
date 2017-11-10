@@ -1,22 +1,13 @@
 from django import forms
-from .models import Vacation
+from .models import Vacation, VacationCode
 from apps.users.models import MyUser
 
 
 class CreateVacationFrom(forms.ModelForm):
-    VACATION_TYPES = (
-        ('a', '연차'),
-        ('b', '오전 반차'),
-        ('c', '오후 반차'),
-        ('d', '공가'),
-        ('e', '병가'),
-        ('e', '건강검진'),
-    )
-
-    vacation_type = forms.ChoiceField(
+    vacation_type = forms.ModelChoiceField(
         required=True,
         label="신청 구분",
-        choices=VACATION_TYPES,
+        queryset=VacationCode.objects.all(),
         widget=forms.Select(
             attrs={
                 'class': 'form-control',
@@ -30,7 +21,7 @@ class CreateVacationFrom(forms.ModelForm):
         label="휴가 시작일",
         widget=forms.DateInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control datepicker',
                 'required' : 'True'
             }
         )
@@ -41,7 +32,7 @@ class CreateVacationFrom(forms.ModelForm):
         label="휴가 종료일",
         widget=forms.DateInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control datepicker',
                 'required' : 'True'
             }
         )

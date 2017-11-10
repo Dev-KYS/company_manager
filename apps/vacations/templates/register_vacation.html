@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <section style="margin-top: 70px">
-			<form method="post" action="{% url 'vacation_create' %}" role="login">
+			<form method="post" action="{% url 'vacation_create' %}" id="frm">
                 {% csrf_token %}
                 <div class="col-md-6 col-md-push-3">
                     <div class="form-group">
@@ -35,9 +35,34 @@
                         {{ vacationform.last_approval_user }}
                     </div>
 
-                    <button type="submit" name="go" class="btn btn-primary btn-block">생성</button>
+                    <button type="button" name="go" class="btn btn-primary btn-block" onclick="check_submit();">생성</button>
                     <button type="button" name="go" class="btn btn-danger btn-block" onclick="location.href='/user_manager/list'">취소</button>
                 </div>
 			</form>
 		</section>
+    <script>
+    $(function () {
+        $('.datepicker').datepicker({
+            dateFormat : 'yy-mm-dd'
+        });
+    });
+
+    function check_submit() {
+        var data = {'start' : $('#id_start').val(), 'end':$('#id_end').val(), 'csrfmiddlewaretoken':'{{ csrf_token }}'};
+        $.ajax({
+            url : "{% url 'vacation_check' %}",
+            data : data,
+            dataType : 'json',
+            type : 'POST',
+            success : function (data) {
+                if(data.result == "SUCCESS"){
+                    alert('신청되었습니다.');
+                    $('#frm').submit();
+                }else{
+                    alert('일정이 중복되었습니다.');
+                }
+            }
+        })
+    }
+    </script>
 {% endblock %}

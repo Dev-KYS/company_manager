@@ -22,7 +22,7 @@
                             신청
                         {% elif list.first_approval == "Y" and list.last_approval == "" %}
                             1차 승인
-                        {% elif list.first_approval != "Y" and list.last_approval != "Y" %}
+                        {% elif list.first_approval == "Y" and list.last_approval == "Y" %}
                             승인
                         {% elif list.first_approval == "N" or list.last_approval == "N" %}
                             반려

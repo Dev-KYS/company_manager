@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import MyUser
+from .models import MyUser, UserCode
 from apps.teams.models import Team
 
 
@@ -85,10 +85,10 @@ class SignupFrom(UserCreationForm):
         )
     )
 
-    position = forms.ChoiceField(
+    position = forms.ModelChoiceField(
         required=False,
         label="직급",
-        choices=POSITION_TYPES,
+        queryset=UserCode.objects.all(),
         widget=forms.Select(
             attrs={
                 'class': 'form-control',
