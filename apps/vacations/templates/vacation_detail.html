@@ -28,6 +28,7 @@
         </div>
 
         <div class="form-group">
+        {% if flag == 'all' %}
             {% if info.first_approval == 'N' or info.last_approval == 'N' %}
                 <h4>반려된 신청입니다.</h4>
             {% elif info.first_approval_user_id == request.user.uid and info.first_approval == 'Y' %}
@@ -36,6 +37,12 @@
                 <button name="agree" id="agree" class="btn btn-default" onclick="agree()">승인</button>
                 <button name="denied" id="denied" class="btn btn-danger" onclick="denied()">반려</button>
             {% endif %}
+        {% endif %}
+
+        {% if flag == 'my' %}
+            <button name="cancel" id="cancel" class="btn btn-danger" onclick="cancel()">취소</button>
+        {% endif %}
+
         </div>
     </section>
 
@@ -62,6 +69,22 @@
         if(confirm('반려하시겠습니까?') == true){
             $.ajax({
                 url: "/vacations/denied/",
+                type : "POST",
+                data : {'v_id' : $('#pk').val(), 'csrfmiddlewaretoken':'{{ csrf_token }}' },
+                dataType : "json",
+                success : function (data) {
+                    if(data.result == 'SUCCESS'){
+                        alert('반려되었습니다');
+                    }
+                }
+            })
+        }
+    }
+    
+    function cancel() {
+        if(confirm('취소하시겠습니까?') == true){
+            $.ajax({
+                url: "/vacations/cancel/",
                 type : "POST",
                 data : {'v_id' : $('#pk').val(), 'csrfmiddlewaretoken':'{{ csrf_token }}' },
                 dataType : "json",

@@ -34,14 +34,14 @@
         </table>
     </div>
 
-    <form id="detail_form" action="" method="post">
+    <form id="detail_form" action="{% url 'my_vacation_detail' %}" method="post">
     {% csrf_token %}
-        <input type="hidden" id="user_id" name="user_id">
+        <input type="hidden" id="v_id" name="v_id">
     </form>
 
     <script>
-    function detail_form(user_id) {
-        $('#user_id').val(user_id);
+    function detail_form(v_id) {
+        $('#v_id').val(v_id);
         $('#detail_form').submit();
     }
     </script>

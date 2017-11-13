@@ -86,8 +86,13 @@ def vacation_check(request):
 
 
 def vacation_detail(request):
-    object = Vacation.objects.select_related().get(user_id=request.POST['user_uid'])
-    return render(request, "vacation_detail.html", {'info': object})
+    object = Vacation.objects.select_related().get(user_id=request.POST['user_uid'], id=request.POST['v_id'])
+    return render(request, "vacation_detail.html", {'info': object, 'flag':'all'})
+
+
+def my_vacation_detail(request):
+    object = Vacation.objects.select_related().get(id=request.POST['v_id'])
+    return render(request, "vacation_detail.html", {'info': object, 'flag': 'my'})
 
 
 def agree(request):
