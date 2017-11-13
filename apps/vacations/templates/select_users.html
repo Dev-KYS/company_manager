@@ -1,0 +1,46 @@
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<input type="hidden" id="flag">
+<table>
+    <thead>
+        <th>이름</th>
+        <th>상태</th>
+        <th>대리인</th>
+    </thead>
+    <tbody>
+        {% for list in user_list %}
+            <tr onclick="
+                    {% if list.agent_id == None %}
+                        setValue('{{ list.user_id }}', '{{ list.user.name }}')
+                    {% else %}
+                        setValue('{{ list.agent_id }}', '{{ list.agent_nm }}')
+                    {% endif %}
+                    ">
+                <td>{{ list.user.name }}</td>
+                <td>
+                {% if list.start != None and list.end != None %}
+                    {% if now_date|date >= list.start|date or now_date <= list.end|date %}
+                        휴가중
+                    {% endif %}
+                {% endif %}
+                </td>
+                <td>{{ list.agent_nm|default:'' }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    $(function () {
+       $('#flag').val(opener.document.getElementById("flag").value);
+    });
+    function setValue(user_id, user_nm) {
+        if($('#flag').val() == 'first'){
+            opener.document.getElementById('id_first_approval_user_name').value = user_nm;
+            opener.document.getElementById('id_first_approval_user').value = user_id;
+        }else{
+            opener.document.getElementById('id_last_approval_user_name').value = user_nm;
+            opener.document.getElementById('id_last_approval_user').value = user_id;
+        }
+    }
+</script>

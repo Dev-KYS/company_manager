@@ -1,6 +1,6 @@
 from django import forms
 from .models import Vacation, VacationCode
-from apps.users.models import MyUser
+from apps.users.models import MyUser, Grant
 
 
 class CreateVacationFrom(forms.ModelForm):

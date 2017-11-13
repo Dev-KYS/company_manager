@@ -105,6 +105,7 @@ class MyUser(AbstractBaseUser):
 
     class Meta:
         db_table = 'users'
+        verbose_name = '사용자'
 
     def __str__(self):
         return self.name
@@ -148,6 +149,58 @@ class UserCode(models.Model):
 
     class Meta:
         db_table = 'user_code'
+        verbose_name = '직급코드'
 
     def __str__(self):
         return self.codename
+
+
+class Grant(models.Model):
+    user = models.ForeignKey(
+        'MyUser',
+        null=True,
+        blank=True,
+        verbose_name='사용자'
+    )
+
+    agent = models.ForeignKey(
+        'Agent',
+        null=True,
+        blank=True,
+        verbose_name='대리인'
+    )
+
+    class Meta:
+        db_table = 'grants'
+        verbose_name = '권한'
+
+    def __str__(self):
+        return self.user.name
+
+
+class Agent(models.Model):
+    user = models.ForeignKey(
+        'MyUser',
+        null=False,
+        blank=False,
+        verbose_name='대리인'
+    )
+
+    start = models.DateField(
+        null=False,
+        blank=False,
+        verbose_name='시작일'
+    )
+
+    end = models.DateField(
+        null=False,
+        blank=False,
+        verbose_name='종료일'
+    )
+
+    class Meta:
+        db_table = 'agents'
+        verbose_name = '대리인'
+
+    def __str__(self):
+        return self.user.name

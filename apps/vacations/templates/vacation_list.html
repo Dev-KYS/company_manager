@@ -15,7 +15,7 @@
                 <tr onclick="detail_form('{{ list.id }}', '{{ list.user.uid }}')">
                     <td>{{ list.id }}</td>
                     <td>{{ list.user.name }}</td>
-                    <td>{{ list.get_vacation_type_display }}</td>
+                    <td>{{ list.vacation_type.codename }}</td>
                     <td>{{ list.created }}</td>
                     <td>
                         {% if list.first_approval == "" %}

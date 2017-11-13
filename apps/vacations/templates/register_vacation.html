@@ -27,14 +27,18 @@
 
                     <div class="form-group">
                         {{ vacationform.first_approval_user.label_tag }}
-                        {{ vacationform.first_approval_user }}
+                        <button class="btn btn-default" type="button" onclick="popup_approval('first')">선택</button>
+                        <input type="hidden" name="first_approval_user" id="id_first_approval_user" value="{{ first_approval.user_id }}">
+                        <input type="text" id="id_first_approval_user_name" disabled class="form-control" value="{{ first_approval.user_nm }}">
                     </div>
 
                     <div class="form-group">
                         {{ vacationform.last_approval_user.label_tag }}
-                        {{ vacationform.last_approval_user }}
+                        <button class="btn btn-default" type="button" onclick="popup_approval('last')">선택</button>
+                        <input type="hidden" name="last_approval_user" id="id_last_approval_user" value="{{ last_approval.user_id }}">
+                        <input type="text" id="id_last_approval_user_name" disabled class="form-control" value="{{ last_approval.user_nm }}">
                     </div>
-
+                    <input type="hidden" id="flag">
                     <button type="button" name="go" class="btn btn-primary btn-block" onclick="check_submit();">생성</button>
                     <button type="button" name="go" class="btn btn-danger btn-block" onclick="location.href='/user_manager/list'">취소</button>
                 </div>
@@ -46,6 +50,15 @@
             dateFormat : 'yy-mm-dd'
         });
     });
+
+    function popup_approval(flag) {
+        $('#flag').val(flag);
+        var popUrl = "{% url 'select_users' %}";
+        var popOption = "width=400, height=600";
+        var openWin;
+        openWin = window.open(popUrl, "", popOption);
+
+    }
 
     function check_submit() {
         var data = {'start' : $('#id_start').val(), 'end':$('#id_end').val(), 'csrfmiddlewaretoken':'{{ csrf_token }}'};

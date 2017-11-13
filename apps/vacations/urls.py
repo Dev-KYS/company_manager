@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^detail/', views.vacation_detail, name='vacation_detail'),
     url(r'^agree/', views.agree, name='vacation_agree'),
     url(r'^denied/', views.denied, name='vacation_denied'),
-    url(r'^vacation_check', views.vacation_check, name='vacation_check')
+    url(r'^vacation_check', views.vacation_check, name='vacation_check'),
+    url(r'^select_users', views.select_users, name='select_users'),
 ]

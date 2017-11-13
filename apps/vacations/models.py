@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from apps.users.models import MyUser
+from apps.users.models import MyUser, Agent, Grant
 
 
 class Vacation(models.Model):
